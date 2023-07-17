@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:25:38 GMT -->
+<head>
+{% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cosmatic Store</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'css/s1.css' %}">
+</head>
+<body> 
+<div id="pre-loader">
+    <img src="{% static 'assets/images/loader.gif' %}" alt="Loading..." />
+</div>
+{% include "store/navbar.html" %}
+
+
+ <!--Body Content-->
+ <div class="container mt-5">
+    <div class="row d-flex justify-content-center pt-5">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images mb-5">
+                         
+                            <div class="text-center"> <img id="main-image" src="{{prod.image.url}}" width="350" /> 
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                           
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"></span>
+                                <h5 class="text-uppercase">{{prod.name}}</h5>
+                                
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">${{prod.price}}</span>
+                                    <div class="ml-2"> <small class="dis-price">${{prod.product_old_price}}</small> <span>{{prod.percentage_offer}}% OFF</span> </div>
+                                </div>
+                            </div>
+                            <p class="about">{{prod.product_discription}}</p>
+                           
+                            
+                           
+                            <p class="about"></p>
+                            <div class="sizes mt-5">
+                                <form method="post" action="http://annimexweb.com/cart/add" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                    <div class="swatch clearfix swatch-0 option1" data-option-index="0">
+                                        <div class="product-form__item">
+                                      <label class="header">Color: <span class="slVariant">Red</span></label>
+                                      <div data-value="Black" class="swatch-element color black available">
+                                        <input class="swatchInput" id="swatch-0-black" type="radio" name="option-0" value="Black"><label class="swatchLbl color small" for="swatch-0-black" style="background-color:black;" title="Black"></label>
+                                      </div>
+                                      <div data-value="Maroon" class="swatch-element color maroon available">
+                                        <input class="swatchInput" id="swatch-0-maroon" type="radio" name="option-0" value="Maroon"><label class="swatchLbl color small" for="swatch-0-maroon" style="background-color:maroon;" title="Maroon"></label>
+                                      </div>
+                                      <div data-value="Blue" class="swatch-element color blue available">
+                                        <input class="swatchInput" id="swatch-0-blue" type="radio" name="option-0" value="Blue"><label class="swatchLbl color small" for="swatch-0-blue" style="background-color:blue;" title="Blue"></label>
+                                      </div>
+                                      <div data-value="Dark Green" class="swatch-element color dark-green available">
+                                        <input class="swatchInput" id="swatch-0-dark-green" type="radio" name="option-0" value="Dark Green"><label class="swatchLbl color small" for="swatch-0-dark-green" style="background-color:darkgreen;" title="Dark Green"></label>
+                                      </div>
+                                    </div>
+                                    </div>
+                                    
+                                   
+                                </form>
+                            </div>
+                            <form action="{% url 'cart_add' prod.id %}">
+                                 {% csrf_token %}
+                                <div class="cart mt-4 align-items-center"> <button class="btn btn-dark text-uppercase mr-2 px-4">Add to cart</button> </div>
+                            </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Body Content-->
+
+ 
+        <!--Store Feature-->
+        <div class="store-feature section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    	<ul class="display-table store-info">
+                        	<li class="display-table-cell">
+                            	<i class="icon anm anm-truck-l"></i>
+                            	<h5>Free Shipping Worldwide</h5>
+                            	<span class="sub-text">
+                            		Diam augue augue in fusce voluptatem
+                            	</span>
+                            </li>
+                          	<li class="display-table-cell">
+                            	<i class="icon anm anm-money-bill-ar"></i>
+                                <h5>Money Back Guarantee</h5>
+                                <span class="sub-text">
+                                	Use this text to display your store information
+                                </span>
+                          	</li>
+                          	<li class="display-table-cell">
+                            	<i class="icon anm anm-comments-l"></i>
+                                <h5>24/7 Help Center</h5>
+                                <span class="sub-text">
+                                	Use this text to display your store information
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Store Feature-->
+        
+
+
+
+
+
+
+
+{% include "store/footer.html" %}
+     <!-- Including Jquery -->
+     <script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/jquery.cookie.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/wow.min.js' %}"></script>
+     <!-- Including Javascript -->
+     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'assets/js/plugins.js' %}"></script>
+     <script src="{% static 'assets/js/popper.min.js' %}"></script>
+     <script src="{% static 'assets/js/lazysizes.js' %}"></script>
+     <script src="{% static 'assets/js/main.js' %}"></script>
+     <!--For Newsletter Popup-->
+    
+    <!--End For Newsletter Popup-->
+
+</body>
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:28:00 GMT -->
+</html>

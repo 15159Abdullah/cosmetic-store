@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:25:38 GMT -->
+<head>
+{% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cosmatic Store</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+<body class="template-index belle home5-cosmetic">
+<div id="pre-loader">
+    <img src="{% static 'assets/images/loader.gif' %}" alt="Loading..." />
+</div>
+<div class="pageWrapper">
+	{% include "store/navbar.html" %}
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Home slider-->
+    	<div class="slideshow slideshow-wrapper pb-section">
+        	<div class="home-slideshow">
+            	<div class="slide slideshow--medium">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{% static 'assets/images/slideshow-banners/home5-banner1.jpg' %}" src="assets/images/slideshow-banners/home5-banner1.jpg" alt="The One" title="The One" />
+                        <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                            <div class="slideshow__text-content classic left">
+                            	<div class="container">
+                                    <div class="wrap-caption left">
+                                        <h2 class="h1 mega-title slideshow__title">The One</h2>
+                                        <span class="mega-subtitle slideshow__subtitle">Complete your daring new look<br>with the one</span>
+                                       <a href = "{% url 'shop' %}" ><span class="btn">Shop now</span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide slideshow--medium">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{% static 'assets/images/slideshow-banners/home5-banner2.jpg' %}" src="assets/images/slideshow-banners/home5-banner2.jpg" alt="Editors Picks" title="Editors Picks" />
+                        <div class="slideshow__text-wrap slideshow__overlay classic top">
+                            <div class="slideshow__text-content classic top">
+                            	<div class="container">
+                                    <div class="wrap-caption center">
+                                        <h2 class="h1 mega-title slideshow__title">Editors Picks</h2>
+                                        <span class="mega-subtitle slideshow__subtitle">The Editors Essential Mascara Guide</span>
+                                        <a href = "{% url 'shop' %}" ><span class="btn">Shop now</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Home slider-->
+        
+       <!--percentage offer-->
+       <div class="product-rows section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-header text-center">
+                        <h2 class="h2">Get Discount Offer</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="productSlider-fullwidth grid-products grid-products-hover-btn">
+
+
+                {% for p in discount %}
+                <div class="col-12 item">
+                    <!-- start product image -->
+                    <div class="product-image">
+                        <!-- start product image -->
+                        <a href="{% url 'get_detial' p.product_slug %}">
+                            <!-- image -->
+                            <img class="primary blur-up lazyload" data-src="{{p.image.url}}" src="{{p.image.url}}" alt="image" title="product">
+                            <!-- End image -->
+                            <!-- Hover image -->
+                            <img class="hover blur-up lazyload" data-src="{{p.image.url}}" src="{{p.image.url}}" alt="image" title="product">
+                            <!-- End hover image -->
+                            <!-- product label -->
+                            {% if p.discount %}
+                            <div class="product-labels rectangular"><span class="lbl on-sale">{{p.percentage}} OFF</span></div>
+                            {% endif %}
+                            {% if p.discount and p.new %}
+                            <div class="product-labels rectangular"><span class="lbl on-sale">{{p.percentage}} OFF</span> <span class="lbl pr-label1">new</span></div>
+                            {% endif %}
+                            <!-- End product label -->
+                        </a>
+                        <!-- end product image -->
+                        
+
+                        <!-- Start product button -->
+                       
+                        <form class="variants add" action="{% url 'get_detial' p.product_slug %}"  method="post">
+                            {% csrf_token %}
+                            <a href="{% url 'get_detial' p.product_slug %}" >
+                           <button class="btn btn-addto-cart" type="button">Select Options</button>
+                         </a>
+                         </form>
+
+                        <div class="button-set">
+                            
+                            <div class="wishlist-btn">
+                                <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist">
+                                    <i class="icon anm anm-heart-l"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end product button -->
+                    </div>
+                    <!-- end product image -->
+
+                    <!--start product details -->
+                    <div class="product-details text-center">
+                        <!-- product name -->
+                        <div class="product-name">
+                            <a href="#">{{p.name}}</a>
+                        </div>
+                        <!-- End product name -->
+                        <!-- product price -->
+                        <div class="product-price">
+                            <span class="old-price">${{p.product_old_price}}.00</span>
+                            <span class="price">${{p.price}}.00</span>
+                        </div>
+                        <!-- End product price -->
+                        
+                        <div class="product-review">
+                            <i class="font-13 fa fa-star"></i>
+                            <i class="font-13 fa fa-star"></i>
+                            <i class="font-13 fa fa-star"></i>
+                            <i class="font-13 fa fa-star-o"></i>
+                            <i class="font-13 fa fa-star-o"></i>
+                        </div>
+                        <!-- Variant -->
+                        
+                        <!-- End Variant -->
+                    </div>
+                    <!-- End product details -->
+                    
+                </div>
+               
+                {% endfor %}
+               
+                
+                
+            </div>
+       </div>
+    </div>
+    <!-- END percentage Offer-->
+        
+        <!--makeup_set-->
+        <div class="section featured-column">
+        	<div class="container">
+            	<div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="section-header text-center">
+                            <h2 id = "set" class="h2">Get Your Set Today!</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                	
+
+                    {% for set in makeup_set %}
+                	 <div class="col-12 col-sm-6 col-md-4 col-lg-4 text-center pt-3">
+                     	<p>
+                           <a href="{% url 'get_detial' set.product_slug %}">   
+                              <img class="blur-up lazyload" data-src="{{set.image.url}}" src="{{set.image.url}}" alt="makup_set">
+                           </a> 
+                        </p>
+                        <h3 class="h4"><a href="#">{{set.name}}</a></h3>
+                        <div class="product-price">
+            
+                            <span class="price">${{set.price}}.00</span>
+                        </div>
+                        <div class="rte-setting"><p>{{set.product_discription}}</p></div>
+                        
+                        <a href="{% url 'get_detial' set.product_slug %}" class="btn no-border">Shop Now</a>
+                     </div>
+                     {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <!--end makeup_set-->
+
+         
+       <!--New Arrivals-->
+       <div class="product-rows section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-header text-center">
+                        <h2 class="h2">New Arrivals We Love</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="productSlider-fullwidth grid-products grid-products-hover-btn">
+
+
+                {% for p in new %}
+                <div class="col-12 item">
+                    <!-- start product image -->
+                    <div class="product-image">
+                        <!-- start product image -->
+                        <a href="{% url 'get_detial' p.product_slug %}">
+                            <!-- image -->
+                            <img class="primary blur-up lazyload" data-src="{{p.image.url}}" src="{{p.image.url}}" alt="image" title="product">
+                            <!-- End image -->
+                            <!-- Hover image -->
+                            <img class="hover blur-up lazyload" data-src="{{p.image.url}}" src="{{p.image.url}}" alt="image" title="product">
+                            <!-- End hover image -->
+                            <!-- product label -->
+                            {% if p.new %}
+                            <div class="product-labels rectangular"><span class="lbl pr-label1">new</span></div>
+                            {% endif %}
+
+                            {% if p.new and p.discount %}
+                            <div class="product-labels rectangular"><span class="lbl on-sale">{{p.percentage}} OFF</span> <span class="lbl pr-label1">new</span></div>
+                            {% endif %}
+                            <!-- End product label -->
+                        </a>
+                        <!-- end product image -->
+                        
+
+                        <!-- Start product button -->
+                       
+                        <form class="variants add" action="{% url 'get_detial' p.product_slug %}"  method="post">
+                            {% csrf_token %}
+                            <a href="{% url 'get_detial' p.product_slug %}" >
+                           <button class="btn btn-addto-cart" type="button">Select Options</button>
+                         </a>
+                         </form>
+
+                        <div class="button-set">
+                            
+                            <div class="wishlist-btn">
+                                <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist">
+                                    <i class="icon anm anm-heart-l"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end product button -->
+                    </div>
+                    <!-- end product image -->
+
+                    <!--start product details -->
+                    <div class="product-details text-center">
+                        <!-- product name -->
+                        <div class="product-name">
+                            <a href="#">{{p.name}}</a>
+                        </div>
+                        <!-- End product name -->
+                        <!-- product price -->
+                        <div class="product-price">
+                            {% if p.new %}
+                            <span class="price">${{p.price}}.00</span>
+                            {% endif %}
+
+                            {% if p.new and p.discount %}
+                            <span class="old-price">${{p.product_old_price}}.00</span>
+                            <span class="price">${{p.price}}.00</span>
+                            
+                            {% endif %}
+                        </div>
+                        <!-- End product price -->
+                        
+                        <div class="product-review">
+                            <i class="font-13 fa fa-star"></i>
+                            <i class="font-13 fa fa-star"></i>
+                            <i class="font-13 fa fa-star"></i>
+                            <i class="font-13 fa fa-star-o"></i>
+                            <i class="font-13 fa fa-star-o"></i>
+                        </div>
+                        <!-- Variant -->
+                        
+                        <!-- End Variant -->
+                    </div>
+                    <!-- End product details -->
+                    
+                </div>
+               
+                {% endfor %}
+               
+                
+                
+            </div>
+       </div>
+    </div>
+    <!-- END New Arrivals-->
+        
+        
+        <!--Parallax Section-->
+        <div class="section">
+            <div class="hero hero--large hero__overlay bg-size">
+            	<img class="bg-img blur-up" src="{% static 'assets/images/parallax-banners/cosmetic-parallax.jpg' %}" alt="" />
+                <div class="hero__inner">
+                    <div class="container">
+                        <div class="wrap-text center text-large font-bold">
+                            <h2 class="h2 mega-title">Super Soft</h2>
+                            <div class="rte-setting mega-subtitle">You wouldn't believe how amazing<br> this maplly lipstick are!</div>
+                            <a href="#set" class="btn">Get Your set Today</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Parallax Section-->
+       
+        
+        <!--Store Feature-->
+        <div class="store-feature section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    	<ul class="display-table store-info">
+                        	<li class="display-table-cell">
+                            	<i class="icon anm anm-truck-l"></i>
+                            	<h5>Free Shipping Worldwide</h5>
+                            	<span class="sub-text">
+                            		Diam augue augue in fusce voluptatem
+                            	</span>
+                            </li>
+                          	<li class="display-table-cell">
+                            	<i class="icon anm anm-money-bill-ar"></i>
+                                <h5>Money Back Guarantee</h5>
+                                <span class="sub-text">
+                                	Use this text to display your store information
+                                </span>
+                          	</li>
+                          	<li class="display-table-cell">
+                            	<i class="icon anm anm-comments-l"></i>
+                                <h5>24/7 Help Center</h5>
+                                <span class="sub-text">
+                                	Use this text to display your store information
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Store Feature-->
+        
+    </div>
+    <!--End Body Content-->
+    
+    <!--Footer-->
+    {% include "store/footer.html" %}
+    <!--End Footer-->
+    
+    
+</div>    
+     <!-- Including Jquery -->
+     <script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/jquery.cookie.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/wow.min.js' %}"></script>
+     <!-- Including Javascript -->
+     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'assets/js/plugins.js' %}"></script>
+     <script src="{% static 'assets/js/popper.min.js' %}"></script>
+     <script src="{% static 'assets/js/lazysizes.js' %}"></script>
+     <script src="{% static 'assets/js/main.js' %}"></script>
+     <!--For Newsletter Popup-->
+    
+    <!--End For Newsletter Popup-->
+
+</body>
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:28:00 GMT -->
+</html>

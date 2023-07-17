@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:25:38 GMT -->
+<head>
+{% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cosmatic Store</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+<body class="template-index belle home5-cosmetic">
+<div id="pre-loader">
+    <img src="{% static 'assets/images/loader.gif' %}" alt="Loading..." />
+</div>
+ {% include "store/navbar.html" %}
+
+ 
+
+ <div class="page section-header text-center mt-5">
+    <div class="page-title">
+        <div class="wrapper"><h1 class="page-width">shop</h1></div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+            <!--Sidebar-->
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
+                <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                <div class="sidebar_tags">
+                    <!--Categories-->
+                    <div class="sidebar_widget categories filter-widget">
+                        <div class="widget-title"><h2>Categories</h2></div>
+                        <div class="widget-content">
+                            <ul class="sidebar_categories">
+                                <li class="lvl-1"><a href="{% url 'shop' %}" class="site-nav">All Product</a></li>
+                                {% for cat in category %}
+                                <li class="lvl-1"><a href="{% url 'category_product' cat.category_slug %}" class="site-nav">{{cat.category_name}}</a></li>
+                                {% endfor %}
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Categories-->
+                    <!--Price Filter-->
+                    
+                    <!--End Price Filter-->
+                    <!--Size Swatches-->
+                    
+                    <!--End Size Swatches-->
+                    <!--Color Swatches-->
+                   
+                    <!--End Color Swatches-->
+                    <!--Brand-->
+                   
+                    <!--End Brand-->
+                    <!--Popular Products-->
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>Popular Products</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                              <div class="grid">
+                                <div class="grid__item">
+                                  <div class="mini-list-item">
+                                    <div class="mini-view_image">
+                                        <a class="grid-view-item__link" href="#">
+                                            <img class="grid-view-item__image" src="{% static 'assets/images/cosmetic-product/product-image3.jpg' %}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="details"> <a class="grid-view-item__title" href="#">Cena Skirt</a>
+                                      <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">$173.60</span></span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="grid__item">
+                                  <div class="mini-list-item">
+                                    <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image" src="{% static 'assets/images/cosmetic-product/product-image4.jpg' %}" alt="" /></a> </div>
+                                    <div class="details"> <a class="grid-view-item__title" href="#">Block Button Up</a>
+                                      <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">$378.00</span></span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="grid__item">
+                                  <div class="mini-list-item">
+                                    <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image" src="{% static 'assets/images/cosmetic-product/product-image6.jpg' %}" alt="" /></a> </div>
+                                    <div class="details"> <a class="grid-view-item__title" href="#">Balda Button Pant</a>
+                                      <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">$278.60</span></span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="grid__item">
+                                  <div class="mini-list-item">
+                                    <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image" src="{% static 'assets/images/cosmetic-product/product-image5.jpg' %}" alt="" /></a> </div>
+                                    <div class="details"> <a class="grid-view-item__title" href="#">Border Dress in Black/Silver</a>
+                                      <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">$228.00</span></span></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <!--End Popular Products-->
+                    
+                    <!--end Product Tags-->
+                </div>
+            </div>
+            <!--End Sidebar-->
+            <!--Main Content-->
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+                
+                <hr>
+                <div class="productList product-load-more">
+                    <!--Toolbar-->
+        
+                    <!--End Toolbar-->
+                    <div class="grid-products grid--view-items">
+                        <div class="row">
+                            {% for p in product %}
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 item">
+                                <!-- start product image -->
+                                <div class="product-image">
+                                    <!-- start product image -->
+                                    <a href="{% url 'get_detial' p.product_slug %}">
+                                        <!-- image -->
+                                        <img class="primary blur-up lazyload" data-src="{{p.product_image.url}}" src="{{p.image.url}}" alt="image" title="product">
+                                        <!-- End image -->
+                                        <!-- Hover image -->
+                                        <img class="hover blur-up lazyload" data-src="{{p.product_image.url}}" src="{{p.image.url}}" alt="image" title="product">
+                                        <!-- End hover image -->
+                                        <!-- product label -->
+                                        {% if p.discount %}
+                                        <div class="product-labels rectangular"><span class="lbl on-sale">{{p.percentage}} OFF</span></div>
+                                        {% else %}
+                                        <div></div>
+                                        {% endif %}
+
+
+                                        {% if p.new %}
+
+                                        <div class="product-labels rectangular"><span class="lbl pr-label1">new</span></div>
+                                        {% else %}
+                                        <span></span>
+                                        {% endif %}
+
+                                        {% if p.new and p.discount %}
+                                        <div class="product-labels rectangular"><span class="lbl on-sale">{{p.percentage}} OFF</span> <span class="lbl pr-label1">new</span></div>
+                                        {% else %}
+                                        <div><span></span></div>
+                                        {% endif %}
+                                        <!-- End product label -->
+                                    </a>
+                                    <!-- end product image -->
+                                    
+
+                                    <!-- Start product button -->
+                                    <form class="variants add" action="{% url 'get_detial' p.product_slug %}"  method="post">
+                                       {% csrf_token %}
+                                       <a href="{% url 'get_detial' p.product_slug %}" >
+                                      <button class="btn btn-addto-cart" type="button">Select Options</button>
+                                    </a>
+                                    </form>
+                                    <div class="button-set">
+                                       
+                                        <div class="wishlist-btn">
+                                            <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist">
+                                                <i class="icon anm anm-heart-l"></i>
+                                            </a>
+                                        </div>
+                                       
+                                    </div>
+                                    <!-- end product button -->
+                                </div>
+                                <!-- end product image -->
+
+                                <!--start product details -->
+                                <div class="product-details text-center">
+                                    <!-- product name -->
+                                    <div class="product-name">
+                                        <a href="#">{{p.name}}</a>
+                                    </div>
+                                    <!-- End product name -->
+                                    <!-- product price -->
+                                    <div class="product-price">
+                                      {% if p.discount %}
+                                        <span class="old-price">${{p.product_old_price}}.00</span>
+                                        {% else %}
+                                        <span></span>
+                                        {% endif %}
+                                        <span class="price">${{p.price}}.00</span>
+                                    </div>
+                                    <!-- End product price -->
+                                    
+                                    <div class="product-review">
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star-o"></i>
+                                        <i class="font-13 fa fa-star-o"></i>
+                                    </div>
+                                    <!-- Variant -->
+                                    
+                                    <!-- End Variant -->
+                                </div>
+                                <!-- End product details -->
+                                
+                            </div>
+                            {% endfor %}
+                            
+                           
+                            
+                           
+                         
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <!--End Main Content-->
+        </div>
+    </div>
+</div>
+   <!--Collection Tab slider-->
+   
+            
+<!--Collection Tab slider-->
+
+
+
+
+
+
+ {% include "store/footer.html" %}
+     <!-- Including Jquery -->
+     <script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/jquery.cookie.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/wow.min.js' %}"></script>
+     <!-- Including Javascript -->
+     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'assets/js/plugins.js' %}"></script>
+     <script src="{% static 'assets/js/popper.min.js' %}"></script>
+     <script src="{% static 'assets/js/lazysizes.js' %}"></script>
+     <script src="{% static 'assets/js/main.js' %}"></script>
+     <!--For Newsletter Popup-->
+    
+    <!--End For Newsletter Popup-->
+
+</body>
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:28:00 GMT -->
+</html>

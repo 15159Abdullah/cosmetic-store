@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html class="no-js" lang="en">
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:25:38 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cosmatic Store</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+<body class="template-index belle home5-cosmetic">
+    <div id="pre-loader">
+        <img src="{% static 'assets/images/loader.gif' %}" alt="Loading..." />
+    </div>
+
+    {% include "store/navbar.html" %}
+ <!--Body Content-->
+ {% if request.session.cart|length < 1 %}
+
+ <div class="container-fluid  mt-100 pt-5">
+    <div class="row">
+    
+       <div class="col-md-12">
+       
+        
+            <div class="page section-header text-center mt-5">
+                <div class="page-title">
+                    <div class="wrapper"><h1 class="page-width">Your cart</h1></div>
+                  </div>
+            </div>
+           </div>
+           <div class="card-body cart">
+                <div class="col-sm-12 empty-cart-cls text-center ">
+                    
+                    <div class="pb-4">	
+                        <i class="icon anm anm-bag-l fa-4x"></i>
+                        </div>
+                  
+                    
+                
+                       <h3><strong>Your Cart is Empty</strong></h3>
+                       <h4>Add something to make me happy :)</h4>
+                       <a href="{% url 'shop' %}" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>   
+                   </div>
+                </div>
+            </div> 
+        
+    </div>
+
+ {% else %}
+ {% load cart_tag %}
+ <div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center mt-5">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Your cart</h1></div>
+          </div>
+    </div>
+    <!--End Page Title-->
+    <body>
+        
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
+                <form action="#" method="post" class="cart style2">
+                    {% csrf_token %}
+                    <table>
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="2" class="text-center">Product</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-right">Total</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key,value in request.session.cart.items %}
+                            <tr class="cart__row border-bottom line1 cart-flex border-top">
+ 
+                                <td class="cart__image-wrapper cart-flex-item">
+                                    <a href="#"><img class="cart__image" src="{{value.image}}" alt="Elastic Waist Dress - Navy / Small"></a>
+                                </td>
+                                <td class="cart__meta small--text-left cart-flex-item">
+                                    <div class="list-view-item__title">
+                                        <a href="#">{{value.name}} </a>
+                                    </div>
+                                    
+                                    <div class="cart__meta-text">
+                                        Color: Navy<br>Size: Small<br>
+                                    </div>
+                                </td>
+                                <td class="cart__price-wrapper cart-flex-item">
+                                    <span class="money">${{value.price}}.00</span>
+                                </td>
+                                <td class="cart__update-wrapper cart-flex-item text-right">
+                                    <div class="cart__qty text-center">
+                                        <div class="cart_quantity_button w-50 ml-5 pl-5">
+                                            <a class="cart_quantity_up" href="{% url 'item_increment' value.product_id %}">+</a>
+                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="{{value.quantity}}" readonly >
+                                            <a class="cart_quantity_down" href="{% url 'item_decrement' value.product_id %}">-</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-right small--hide cart-price">
+                                    <div><span class="money">$ {{ value.price|multiply:value.quantity}}0</span></div>
+                                </td>
+                                <td class="text-center small--hide"><a href="{% url 'item_clear' key %}" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-left"><a href="{% url 'shop' %}" class="btn btn--small-wide checkout"><i class="icon icon-arrow-circle-left"></i> Continue shopping</a></td>
+                                
+                
+                                <td colspan="3" class="text-right"><a href="{% url 'cart_clear' %}" class="btn btn--small-wide checkout">Clear Cart</a></button></td>
+                            </tr>
+                        </tfoot>
+                </table>
+                
+                <div class="currencymsg">We processes all orders in USD. While the content of your cart is currently displayed in USD, the checkout will use USD at the most current exchange rate.</div>
+                <hr>
+               
+                
+                </form>                   
+               </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+                <div class="cart-note">
+                    <div class="solid-border">
+                        <h5><label for="CartSpecialInstructions" class="cart-note__label small--text-center">Add a note to your order</label></h5>
+                        <textarea name="note" id="CartSpecialInstructions" class="cart-note__input"></textarea>
+                    </div>
+                </div>
+            <div class="solid-border">
+
+                <div class="row pb-3" >
+                    <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Subtotal</strong></span> 
+                  <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money">${{cart_total_amount}}0</span></span>   
+                </div>
+                <div class="cart__shipping">Shipping &amp; taxes calculated at checkout</div>
+                  <p class="cart_tearm">
+                    <label>
+                      <input type="checkbox" name="tearm" id="cartTearm" class="checkbox" value="tearm" required="">
+                       I agree with the terms and conditions</label>
+                  </p>
+        
+        
+                  <form action="{% url 'checkout' %}">
+                  <input type="submit" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout" value="Checkout">
+                  </form>
+                <div class="paymnet-img"><img src="{% static 'assets/images/payment-img.jpg' %}" alt="Payment"></div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endif %}
+<!--End Body Content-->
+
+{% include "store/footer.html" %}
+ <!-- Including Jquery -->
+ <script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+ <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+ <script src="{% static 'assets/js/vendor/jquery.cookie.js' %}"></script>
+ <script src="{% static 'assets/js/vendor/wow.min.js' %}"></script>
+ <!-- Including Javascript -->
+ <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+ <script src="{% static 'assets/js/plugins.js' %}"></script>
+ <script src="{% static 'assets/js/popper.min.js' %}"></script>
+ <script src="{% static 'assets/js/lazysizes.js' %}"></script>
+ <script src="{% static 'assets/js/main.js' %}"></script>
+ <!--For Newsletter Popup-->
+</body>
+</html>

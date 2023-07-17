@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:25:38 GMT -->
+<head>
+{% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cosmatic Store</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+<body class="template-index belle home5-cosmetic">
+<div id="pre-loader">
+    <img src="{% static 'assets/images/loader.gif' %}" alt="Loading..." />
+</div>
+
+	{% include "store/navbar.html" %}
+
+
+    <div class="untree_co-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center pt-5 mt-5">
+                <div class="pb-4">	
+                    <i class="icon anm anm-bag-l fa-4x"></i>
+                    </div>
+              
+                
+              <h2 class="display-4 text-black">Thank you!</h2>
+              <p class="lead mb-5">You order was successfuly completed.</p>
+              <p class="text-success"> Check You Order Status in Your Order page.</p>
+              <p><a href="{% url 'shop' %}" class="btn btn-sm btn-outline-black">Back to shop</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <!--Footer-->
+    {% include "store/footer.html" %}
+    <!--End Footer-->
+ 
+     <!-- Including Jquery -->
+     <script src="{% static 'assets/js/vendor/jquery-3.3.1.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/jquery.cookie.js' %}"></script>
+     <script src="{% static 'assets/js/vendor/wow.min.js' %}"></script>
+     <!-- Including Javascript -->
+     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'assets/js/plugins.js' %}"></script>
+     <script src="{% static 'assets/js/popper.min.js' %}"></script>
+     <script src="{% static 'assets/js/lazysizes.js' %}"></script>
+     <script src="{% static 'assets/js/main.js' %}"></script>
+     <!--For Newsletter Popup-->
+    
+    <!--End For Newsletter Popup-->
+
+</body>
+
+<!-- belle/home5-cosmetic.html   11 Nov 2019 12:28:00 GMT -->
+</html>
